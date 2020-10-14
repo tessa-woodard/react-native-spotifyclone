@@ -1,12 +1,24 @@
-import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react'
+import { StyleSheet, FlatList, View } from 'react-native'
 
-export default function TabOneScreen() {
+import AlbumCategory from '../components/AlbumCategory'
+import albumCategories from '../data/albumCategories'
+
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={{ color: 'white' }}>Hello</Text>
+      <FlatList
+        data={albumCategories}
+        renderItem={({ item }) => (
+          <AlbumCategory
+            title={item.title}
+            albums={item.albums}
+          />
+        )}
+        keyExtractor={(item) => item.id}
+      />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -24,4 +36,4 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-});
+})
